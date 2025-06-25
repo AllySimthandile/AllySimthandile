@@ -347,13 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> b4aa177f2fc4015e56dad9825dd6f26ff16c6417
 // Contact form handling
 document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.getElementById('contact-form');
