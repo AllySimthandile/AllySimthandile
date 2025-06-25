@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Alpheus Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- Add EmailJS Script first -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Initialize EmailJS -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      emailjs.init("1yHztREs84hRu6tYx");
+    });
+  </script>
+
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #4f46e5;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --card-bg: #ffffff;
+      --transition: all 0.3s ease;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --jet: hsl(0, 0%, 22%);
+      --onyx: hsl(240, 1%, 17%);
+      --eerie-black-1: hsl(240, 2%, 13%);
+      --eerie-black-2: hsl(240, 2%, 12%);
+      --smoky-black: hsl(0, 0%, 7%);
+      --white-1: hsl(0, 0%, 100%);
+      --white-2: hsl(0, 0%, 98%);
+      --orange-yellow-crayola: hsl(45, 100%, 72%);
+      --vegas-gold: hsl(45, 54%, 58%);
+      --light-gray: hsl(0, 0%, 84%);
+      --light-gray-70: hsla(0, 0%, 84%, 0.7);
+      --bittersweet-shimmer: hsl(0, 43%, 51%);
+    }
+
+    body {
+      background: var(--smoky-black);
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Portfolio Styles */
+    .portfolio {
+      padding: 60px 0;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .portfolio-header h2 {
+      font-size: 2.5rem;
+      color: var(--orange-yellow-crayola);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .portfolio-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+
+    .portfolio-header p {
+      color: var(--light-gray);
+      max-width: 600px;
+      margin: 20px auto 0;
+      font-size: 1.1rem;
+    }
+
+    .filter-section {
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: none;
+      background: var(--eerie-black-1);
+      color: var(--light-gray);
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: var(--fw-500);
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--orange-yellow-crayola);
+      color: var(--smoky-black);
+      font-weight: 600;
+    }
+
+    .filter-btn i {
+      font-size: 1.1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .project-card {
+      background: var(--eerie-black-2);
+      border: 1px solid var(--jet);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-img img {
+      transform: scale(1.05);
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--orange-yellow-crayola);
+      color: var(--smoky-black);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .project-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--white-2);
+    }
+
+    .project-description {
+      color: var(--light-gray);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .project-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-link {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .project-link:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .project-more {
+      background: var(--light-gray);
+      color: var(--dark);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .project-more:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Project Detail Modal */
+    .project-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .project-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transform: translateY(50px);
+      transition: transform 0.4s ease;
+    }
+
+    .project-modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 20px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-body {
+      padding: 30px;
+      overflow-y: auto;
+      max-height: calc(90vh - 130px);
+      background: var(--eerie-black-1);
+      color: var(--light-gray);
+    }
+
+    .modal-image {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .modal-description {
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .tech-item {
+      background: var(--onyx);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow);
+      z-index: 100;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    /* Existing styles from your CSS */
+    /* ... (All your existing CSS styles) ... */
+    
+    /* Additional styles for the rest of your portfolio */
+    /* ... (All your existing CSS styles) ... */
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+      
+      .filter-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ... (Your existing HTML structure) ... -->
+  <main>
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/Profile.jpg" alt="Richard hanrick" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Richard hanrick">Alpheus Mailula</h1>
+
+          <p class="title">Data Scientist</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:richard@example.com" class="contact-link">alpheusjustice@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+12133522795" class="contact-link">+27 (72) 011-3828</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1982-06-23">May 19, 2001</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>South Africa, Gauteng, Pretoria, Soshanguve</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+    <div class="main-content">
+      
+     
+      
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Certificates</button>
+        </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            As a data scientist, I am driven by the power of data to solve complex real-world problems and uncover actionable insights. 
+            I believe in combining analytical rigor with creativity to transform raw data into meaningful narratives that drive decision-making. 
+            What excites me most is the opportunity to bridge the gap between technical analysis and business impact, whether through predictive modeling, 
+            machine learning pipelines, or intuitive data visualizations. I am particularly passionate about leveraging emerging technologies like 
+            generative AI, deep learning, and big data frameworks to build innovative, scalable solutions.
+          </p>
+      
+          <p>
+            In my role as a data scientist, I specialize in designing end-to-end data workflows – from cleaning and preprocessing unstructured data 
+            to deploying production-ready models. I thrive on translating business challenges into data-driven strategies, whether that means 
+            optimizing operations, identifying trends, or creating recommendation systems. My work emphasizes not just technical precision, 
+            but also clear communication of insights to stakeholders through storytelling with data. I am committed to staying at the forefront 
+            of tools like Python, TensorFlow, and cloud-based analytics platforms to deliver impactful results.
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/analysis-icon.png" alt="Analysis icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Exploration & Analysis</h4>
+                <p class="service-item-text">
+                  Extract insights from raw data using Python, SQL, and tools like Pandas. Clean, preprocess, and visualize datasets 
+                  to uncover trends, anomalies, and actionable patterns.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/ml-icon.jpg" alt="Machine learning icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Machine Learning & AI Development</h4>
+                <p class="service-item-text">
+                  Build predictive models (regression, classification, NLP) and deploy scalable ML pipelines. 
+                  Specialize in deep learning (TensorFlow/PyTorch) for tasks like computer vision and generative AI.
+                </p>
+              </div>
+            </li>
+
+            <!-- Data Storytelling & Visualization -->
+      <li class="service-item">
+        <div class="service-icon-box">
+          <img src="./assets/images/viz-icon.png" alt="Visualization icon" width="40">
+        </div>
+        <div class="service-content-box">
+          <h4 class="h4 service-item-title">Data Storytelling & Visualization</h4>
+          <p class="service-item-text">
+            Transform complex results into intuitive dashboards (Power BI, Tableau) and reports. 
+            Communicate findings to stakeholders through clear narratives and visualizations.
+          </p>
+        </div>
+      </li>
+
+      <li class="service-item">
+        <div class="service-icon-box">
+          <!-- Forensic Analysis Icon -->
+          <img src="./assets/images/icon-forensic.png" alt="Forensic analysis icon" width="40">
+        </div>
+        <div class="service-content-box">
+          <h4 class="h4 service-item-title">Forensic Analysis & Fraud Detection</h4>
+          <p class="service-item-text">
+            Investigate financial anomalies and uncover fraudulent patterns using advanced data analysis tools like 
+            <strong>Microsoft Access</strong> (SQL queries, relational databases) and <strong>Excel</strong> (PivotTables, 
+            VLOOKUP, macros). Reconstruct transactional timelines, identify irregularities, and generate audit-ready 
+            reports for legal or compliance purposes.
+          </p>
+        </div>
+      </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/analysis-icon.png" alt="camera icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Business Analysis and Modelling</h4>
+
+                <p class="service-item-text">
+                  Design focused on key elements like data charts, flow diagrams, and a sleek, modern style that conveys professionalism.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <!-- Academy/education icon -->
+                <img src="./assets/images/fnb-icon.png" alt="App academy icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Full-Stack App Development Training</h4>
+                <p class="service-item-text">
+                  Currently advancing through <strong>FNB App Academy's</strong> 9-week intermediate program:
+                  <ul class="skill-sublist">
+                    <li>✅ Completed Beginner: Built static sites with HTML/CSS</li>
+                    <li>🚧 Intermediate Focus: JavaScript/Python full-stack apps</li>
+                    <li>🎯 Advanced Focus (Goal):</li>
+                    <ul class="advanced-sublist">
+                      <li>🔧 RESTful APIs with Flask/Django</li>
+                      <li>🤖 AI Integration (LLMs, TensorFlow, OpenAI API)</li>
+                      <li>📊 CI/CD Pipelines & Containerization (Docker)</li>
+                      <li>🧪 Real-world project: Building AI-enhanced SaaS platform</li>
+                   </ul>
+                  </ul>
+                </p>
+              </div>
+            </li>
+
+        </section>
+
+
+    
+        <!--
+          - testimonials modal
+        -->
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-img-wrapper">
+              <figure class="modal-avatar-box">
+                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+              </figure>
+
+              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+            </div>
+
+            <div class="modal-content">
+
+              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
+
+              <time datetime="2021-06-14">14 June, 2021</time>
+
+              <div data-modal-text>
+                <p>
+                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
+                  lot of experience
+                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
+                  consectetur adipiscing
+                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </article>
+
+
+
+     
+
+
+     <!--
+      - #RESUME
+    -->
+
+    <article class="resume" data-page="resume">
+
+      <header>
+        <h2 class="h2 article-title">Resume</h2>
+      </header>
+
+      <section class="timeline">
+
+        <div class="title-wrapper">
+          <div class="icon-box">
+            <ion-icon name="book-outline"></ion-icon>
+          </div>
+
+          <h3 class="h3">Education</h3>
+        </div>
+
+        <ol class="timeline-list">
+
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Tshwane University of Technology</h4>
+
+            <span>2021 — 2024</span>
+
+            <p class="timeline-text">
+              Diploma in Informatics (Data Scince)
+            </p>
+
+          </li>
+
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Mahlane Secondary School</h4>
+
+            <span>2014 - 2018</span>
+
+            <p class="timeline-text">
+              I completed my matric in 2018
+            </p>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Cisco Networking Academy</h4>
+              <span>2024 Online Course</span>
+              <p class="timeline-text">
+                Certificate: Introduction to Data Science - Student Level Credential
+              </p>
+              <p class="timeline-text">
+                Successfully demonstrated proficiency in:
+              </p>
+
+              <ul class="timeline-sublist">
+                <li>
+                  <svg class="gold-check" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  Explaining promises and challenges of data analytics
+                </li>
+                <li>
+                  <svg class="gold-check" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  Understanding data's role in AI/ML systems
+                </li>
+                <li>
+                  <svg class="gold-check" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  Exploring career paths in data analytics
+                </li>
+              </ul>
+            </li>
+            
+            <li class="timeline-item">
+<h4 class="h4 timeline-item-title">Power BI Job Simulation</h4>
+<span>Job Simulation For PWC</span>
+<p class="timeline-text">
+  Certificate of Completion - Practical tasks executed in:
+</p>
+<ul class="timeline-sublist">
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Introduction to Power BI analytics
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Call Centre Trends analysis
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Customer Retention modeling
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Diversity & Inclusion dashboard development
+  </li>
+</ul>
+<p class="timeline-text">Certificate: Data Visualisation (Power BI).</p>
+<p class="timeline-text">Date Of Completion: March 6th, 2025.</p>>
+</li>
+
+<li class="timeline-item">
+<h4 class="h4 timeline-item-title">Data Visualization: Empowering Business with Effective Insights</h4>
+<span>JoB Simulation for TATA</span>
+<p class="timeline-text">
+  Certificate of Completion - Practical tasks executed in:
+</p>
+<ul class="timeline-sublist">
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Framing the Business Scenario
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Choosing the Right Visuals
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Creating Effective Visuals (Tableau/Power BI)
+  </li>
+  <li>
+    <svg class="gold-check" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    Communicating Insights and Analysis
+  </li>
+</ul>
+              
+              <p class="timeline-text">Certificate: Data Visualisation.</p>
+              <p class="timeline-text">Date Of Completion: February 16th, 2025.</p>
+            </li>
+
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Analytics Vidhya</h4>
+
+            <span>2025 Online Course</span>
+
+            <p class="timeline-text">
+              Certificate: Machine Learning Certification Course For Beginners
+            </p>
+
+          </li>
+
+        </ol>
+
+      </section>
+
+      <section class="timeline">
+
+        <div class="title-wrapper">
+          <div class="icon-box">
+            <ion-icon name="book-outline"></ion-icon>
+          </div>
+
+          <h3 class="h3">Experience</h3>
+        </div>
+
+        <ol class="timeline-list">
+
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Data Science Intern</h4>
+
+            <span>2024: Period of one year</span>
+
+            <p class="timeline-text">
+              Company Name: 4IR LAB TUT Soshanguve South Campus
+            </p>
+
+          </li>
+          <li class="timeline-item">
+            <h4 class="h4 timeline-item-title">Data Science Intern</h4>
+            <span>2025: 1 Month (Remote)</span>
+            <p class="timeline-text">
+              Company Name: HexSoftwares
+            </p>
+            
+          </li>
+
+        </ol>
+
+      </section>
+
+      <section class="skill">
+
+        <h3 class="h3 skills-title">My Skills & Experience as a Data Scientist</h3>
+      
+        <ul class="skills-list content-card">
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Programming & Tools: Python, R, SQL, Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, Jupyter</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 90%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Data Analysis & Visualization: Matplotlib, Seaborn, Power BI, Tableau, Excel</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 88%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Machine Learning & AI: Classification, Regression, Clustering, Deep Learning, NLP</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 85%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Data Wrangling & ETL: Data Cleaning, Feature Engineering, Pipeline Automation</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 87%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Database Management: SQL, PostgreSQL, MongoDB</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 80%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Problem Solving & Analytical Thinking</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 95%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Communication & Data Storytelling</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 93%;"></div>
+            </div>
+          </li>
+      
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5">Continuous Learning & Adaptability</h5>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 98%;"></div>
+            </div>
+          </li>
+      
+        </ul>
+      
+      </section>
+      
+
+    </article>
+
+      <!--
+  - #PORTFOLIO
+-->
+
+<article class="portfolio" data-page="portfolio">
+
+  <header>
+    <h2 class="h2 article-title">Portfolio</h2>
+  </header>
+
+  <section class="projects">
+
+    <ul class="filter-list">
+      <li class="filter-item">
+              <button class="active" data-filter-btn="all">All</button>
+      </li>
+      <li class="filter-item">
+        <button data-filter-btn="python">Python</button>
+      </li>
+      <li class="filter-item">
+        <button data-filter-btn="r programming">R Programming</button>
+      </li>
+      <li class="filter-item">
+        <button data-filter-btn="power bi">Power BI</button>
+      </li>
+      <li class="filter-item">
+        <button data-filter-btn="tableau">Tableau</button>
+      </li>
+      <li class="filter-item">
+        <button data-filter-btn="sql & excel">SQL & Excel</button>
+      </li>
+    </ul>
+
+    <div class="filter-select-box">
+      <button class="filter-select" data-select>
+        <div class="select-value" data-selecct-value>Select category</div>
+        <div class="select-icon">
+          <ion-icon name="chevron-down"></ion-icon>
+        </div>
+      </button>
+
+      <ul class="select-list" data-select-list>
+              <li class="select-item">
+                <button data-select-item="all">All</button>
+              </li>
+              <li class="select-item">
+                <button data-select-item="python">Python</button>
+              </li>
+              <li class="select-item">
+                <button data-select-item="r programming">R Programming</button>
+              </li>
+              <li class="select-item">
+                <button data-select-item="power bi">Power BI</button>
+              </li>
+              <li class="select-item">
+                <button data-select-item="tableau">Tableau</button>
+              </li>
+              <li class="select-item">
+                <button data-select-item="sql & excel">SQL & Excel</button>
+              </li>
+      </ul>
+    </div>
+
+    <ul class="project-list">
+      <!-- Python - EDA & ML -->
+      <li class="project-item active" data-filter-item data-category="python">
+        <a href="https://github.com/AllySimthandile/HexSoftwares_Project_Simple-Linear-Regression-on-Housing-Prices./blob/main/Project2.py" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <img src="https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Python Data Science">
+          </figure>
+          <div class="project-content">
+          <h3 class="project-title">Exploratory Data Analysis & ML (Python)</h3>
+            <p class="project-description">
+              Housing price prediction model using advanced machine learning techniques. Features data cleaning, 
+              visualization with Matplotlib/Seaborn, and predictive modeling with scikit-learn.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">Python | ML</span>
+              <button class="view-project-btn">View Project</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- R Programming - Predictive Modeling -->
+      <li class="project-item active" data-filter-item data-category="r programming">
+        <a href="https://github.com/AllySimthandile/Prediction-With-R" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <img src="assets/images/r-programming.jpg" alt="R Programming Analytics">
+          </figure>
+          <div class="project-content">
+          <h3 class="project-title">Predictive Modeling in R</h3>
+            <p class="project-description">
+              Statistical analysis and predictive modeling using R. Implements advanced regression techniques,
+              data visualization with ggplot2, and statistical inference methods.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">R Programming</span>
+              <button class="view-project-btn">View Project</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- Power BI - Superstore Sales Overview (Already links to superstore-sales.html) -->
+      <li class="project-item active" data-filter-item data-category="power bi">
+        <a href="superstore-sales.html" class="project-link-wrapper" target="_blank"> 
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Superstore Sales Overview Dashboard">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">Superstore Sales Overview (Power BI)</h3>
+            <p class="project-description">
+              Comprehensive Power BI dashboard for analyzing superstore sales performance,
+              including trends, profit margins, and regional sales distribution.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">Power BI</span>
+              <button class="view-project-btn">View Dashboard</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- Diversity & Inclusion (Now links to diversity-inclusion.html) -->
+      <li class="project-item active" data-filter-item data-category="power bi">
+        <a href="diversity-inclusion.html" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <img src="https://images.unsplash.com/photo-1553484771-047a44eee27a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="HR Analytics Dashboard">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">Diversity & Inclusion – HR Dashboards</h3>
+            <p class="project-description">
+              Comprehensive HR analytics focusing on workplace diversity metrics, inclusion initiatives,
+              and demographic trends with actionable insights.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">Power BI</span>
+              <button class="view-project-btn">View Analysis</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- Customer Retention (Now links to customer-retention.html) -->
+      <li class="project-item active" data-filter-item data-category="power bi">
+        <a href="customer-retention.html" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <img src="https://images.unsplash.com/photo-1623282033815-40b05d96c903?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Customer Analytics">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">Customer Retention Analysis</h3>
+            <p class="project-description">
+              Customer lifecycle analysis with cohort tracking, churn prediction, and 
+              retention strategy recommendations based on behavioral patterns.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">Power BI</span>
+              <button class="view-project-btn">View Analysis</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- Tableau (Now links to tableau-retail.html) -->
+      <li class="project-item active" data-filter-item data-category="tableau">
+        <a href="tableau-retail.html" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <img src="https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Tableau Dashboard">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">Retail Analysis Dashboard</h3>
+            <p class="project-description">
+              Comprehensive retail performance analysis with sales trends, inventory optimization,
+              and geographic distribution insights using Tableau's advanced features.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">Tableau</span>
+              <button class="view-project-btn">View Dashboard</button>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <!-- SQL + Excel + Access (Now links to data-querying-reporting.html) -->
+      <li class="project-item active" data-filter-item data-category="sql & excel">
+        <a href="data-querying-reporting.html" class="project-link-wrapper" target="_blank">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <img src="assets/images/sql-excel.jpg" alt="SQL and Excel Analytics">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">Data Querying & Reporting</h3>
+            <p class="project-description">
+              Advanced data analysis using SQL, Excel, and Access. Features complex queries, 
+              pivot tables, and automated reporting for business intelligence.
+            </p>
+            <div class="project-meta">
+              <span class="project-category">SQL & Excel</span>
+              <button class="view-project-btn">View Project</button>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <!-- This Project Modal remains, but will only be triggered if you add new projects with data-modal-trigger -->
+    <div class="project-modal" id="project-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">Project Details</h3>
+          <button class="modal-close">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+      </div>
+        <div class="modal-body">
+          <img src="" alt="Project Preview" class="modal-image" id="modal-image">
+          <div class="modal-description">
+            <h4 class="project-subtitle" id="modal-subtitle"></h4>
+            <p class="project-details" id="modal-details"></p>
+            <div class="project-tech">
+              <h5>Technologies Used:</h5>
+              <ul class="tech-list" id="modal-tech-list"></ul>
+            </div>
+            <div class="project-highlights">
+              <h5>Key Features:</h5>
+              <ul class="highlights-list" id="modal-highlights"></ul>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <a href="#" class="project-link" id="modal-link" target="_blank">
+              <ion-icon name="open-outline"></ion-icon>
+              Open Project
+            </a>
+            <button class="return-btn" onclick="closeProjectModal()">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+              Return to Portfolio
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</article>
+<!--
+        - #Certificates
+      -->
+
+      <article class="certificates" data-page="certificates">
+        <header>
+          <h2 class="h2 article-title">My Certificates</h2>
+        </header>
+      
+        <section class="certificates-grid">
+          <!-- Certificate 1 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate1.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Cisco Data Science Certificate</h3>
+              <a href="./assets/certs/certificate1.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+      
+          <!-- Certificate 2 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate2.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Power BI Job Simulation Certificate</h3>
+              <a href="./assets/certs/certificate2.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+      
+          <!-- Certificate 3 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate3.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Data Visualization TATA Job Simulation</h3>
+              <a href="./assets/certs/certificate3.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+      
+          <!-- Certificate 4 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate4.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Machine Learning Basics Certificate</h3>
+              <a href="./assets/certs/certificate4.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+      
+          <!-- Certificate 5 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate5.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Online-Intern(Data Science) certificate</h3>
+              <a href="./assets/certs/certificate5.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+      
+          <!-- Certificate 6 -->
+          <div class="certificate-card">
+            <div class="pdf-viewer-container">
+              <iframe src="./assets/certs/certificate6.pdf#toolbar=0&navpanes=0" width="100%" height="400px"></iframe>
+            </div>
+            <div class="certificate-info">
+              <h3 class="certificate-title">Microsoft Azure Fundamentals And Administrator</h3>
+              <a href="./assets/certs/certificate6.pdf" target="_blank" class="view-full-btn">
+                <ion-icon name="expand-outline"></ion-icon> View Full Screen
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form id="contact-form" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="from_name" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="reply_to" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <div class="form-status">
+              <p class="form-alert" style="display: none;"></p>
+            </div>
+
+            <button class="form-btn" type="submit" data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS (if not already done in a separate script)
+    emailjs.init("1yHztREs84hRu6tYx"); //
+
+    // --- Your Navigation Logic ---
+    const pages = document.querySelectorAll('[data-page]');
+    const navigationLinks = document.querySelectorAll('[data-nav-link]');
+    const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+    const sidebar = document.querySelector('[data-sidebar]');
+
+    // Ensure these elements exist before using them
+    if (!pages.length) console.warn("No elements with data-page found!");
+    if (!navigationLinks.length) console.warn("No elements with data-nav-link found!");
+
+    const navigateToPage = (pageName) => {
+        pages.forEach(page => {
+            if (page.getAttribute('data-page') === pageName) {
+                page.classList.add('active');
+                window.scrollTo(0, 0);
+            } else {
+                page.classList.remove('active');
+            }
+        });
+
+        navigationLinks.forEach(link => {
+            // Use textContent for matching, convert to lowercase for consistency
+            if (link.textContent.toLowerCase() === pageName) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        // If you have a sidebar that hides on navigation
+        if (sidebar && sidebarBtn && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            sidebarBtn.classList.remove('active');
+        }
+    };
+
+    // Event listeners for navigation buttons
+    navigationLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const pageName = link.textContent.toLowerCase();
+            // Special handling for "Certificates" if its data-page attribute isn't directly matching textContent
+            // Ensure your HTML button text exactly matches the data-page attribute for your article (e.g., "Certificates" -> "certificates")
+            navigateToPage(pageName);
+        });
+    });
+
+    // Initialize with the default active page (e.g., 'about')
+    navigateToPage('about'); //
+
+    // --- Your Portfolio Filtering Functionality (already provided) ---
+    const filterBtns = document.querySelectorAll('[data-filter-btn]');
+    const projectCards = document.querySelectorAll('.project-item'); // Changed from .project-card to .project-item based on your HTML
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter-btn').toLowerCase(); // Make sure this matches category attribute
+
+            projectCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (filterValue === 'all' || cardCategory === filterValue) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // --- Your Project Modal Functionality ---
+    const projectModal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalDetails = document.getElementById('modal-details');
+    const modalTechList = document.getElementById('modal-tech-list');
+    const modalHighlights = document.getElementById('modal-highlights');
+    const modalLink = document.getElementById('modal-link');
+    const closeModalBtn = document.querySelector('.project-modal .modal-close');
+    const returnBtn = document.querySelector('.project-modal .return-btn');
+
+    // You'll need to define the project details here or fetch them dynamically
+    const projectDetails = {
+        'powerbi-sales': {
+            title: 'Sales Dashboard (Power BI)',
+            subtitle: 'Interactive Sales Performance Analysis',
+            details: 'This dashboard provides real-time insights into sales performance, tracking key metrics like total sales, profit margins, and sales by region or product category. It includes interactive filters and drill-down capabilities for deeper analysis. The goal was to empower sales teams with actionable data.',
+            image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+            tech: ['Power BI', 'DAX', 'SQL Server'],
+            highlights: [
+                'Dynamic KPI tracking',
+                'Sales trend analysis over time',
+                'Geographic sales distribution',
+                'Interactive filtering by product, region, and date'
+            ],
+            link: '#' // Replace with actual link to live dashboard or more details
+        },
+        'diversity': {
+            title: 'Diversity & Inclusion – HR Dashboards',
+            subtitle: 'Analyzing Workplace Diversity and Inclusion Metrics',
+            details: 'Developed a comprehensive set of HR dashboards to visualize diversity metrics (gender, ethnicity, age, etc.) and analyze inclusion initiatives. The dashboards help identify areas for improvement and track the effectiveness of D&I programs within the organization.',
+            image: 'https://images.unsplash.com/photo-1553484771-047a44eee27a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+            tech: ['Power BI', 'HRIS Data', 'Excel'],
+            highlights: [
+                'Demographic breakdown of workforce',
+                'Inclusion survey result visualization',
+                'Recruitment and retention analysis by diversity segment',
+                'Trend analysis of D&I initiatives'
+            ],
+            link: '#'
+        },
+        'retention': {
+            title: 'Customer Retention Analysis',
+            subtitle: 'Identifying Churn Drivers and Optimizing Retention Strategies',
+            details: 'This project involved a deep dive into customer data to understand factors contributing to churn and to develop predictive models for early churn detection. The dashboard provides insights into customer segments, loyalty trends, and the impact of various customer engagement strategies.',
+            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+            tech: ['Power BI', 'SQL', 'Customer Data Platforms'],
+            highlights: [
+                'Cohort analysis for retention rates',
+                'Churn prediction model insights',
+                'Customer lifetime value (CLV) analysis',
+                'Effectiveness of marketing campaigns on retention'
+            ],
+            link: '#'
+        },
+        'tableau-retail': {
+            title: 'Retail Analysis Dashboard (Tableau)',
+            subtitle: 'Optimizing Retail Operations with Data-Driven Insights',
+            details: 'Created an interactive dashboard in Tableau to analyze retail sales, inventory, and customer behavior. It allows drill-downs by store, product, and time period, helping identify best-selling products, slow-moving inventory, and sales performance gaps.',
+            image: 'https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+            tech: ['Tableau', 'SQL', 'Retail POS Data'],
+            highlights: [
+                'Sales performance by region/store',
+                'Inventory turnover rates',
+                'Product profitability analysis',
+                'Customer purchasing patterns'
+            ],
+            link: '#'
+        },
+        'sql-excel': {
+            title: 'Data Querying & Reporting (SQL & Excel)',
+            subtitle: 'Streamlining Data Extraction and Reporting for Business Intelligence',
+            details: 'Developed robust SQL queries for extracting data from various databases (including MS Access), transforming it in Excel using advanced functions (PivotTables, VLOOKUP, macros), and creating automated, comprehensive reports for stakeholders. Focused on efficiency and accuracy.',
+            image: 'https://images.unsplash.com/photo-1623282033815-40b05d96c903?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+            tech: ['SQL', 'MS Excel', 'MS Access'],
+            highlights: [
+                'Complex data extraction with SQL joins and subqueries',
+                'Automated Excel reporting templates',
+                'Data validation and cleansing in Excel',
+                'Dashboard creation for key metrics'
+            ],
+            link: '#'
+        }
+    };
+
+    document.querySelectorAll('[data-modal-trigger]').forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const projectId = this.getAttribute('data-modal-trigger');
+            const details = projectDetails[projectId];
+
+            if (details) {
+                modalTitle.textContent = details.title;
+                modalImage.src = details.image;
+                modalSubtitle.textContent = details.subtitle;
+                modalDetails.textContent = details.details;
+
+                modalTechList.innerHTML = '';
+                details.tech.forEach(tech => {
+                    const li = document.createElement('li');
+                    li.className = 'tech-item';
+                    li.textContent = tech;
+                    modalTechList.appendChild(li);
+                });
+
+                modalHighlights.innerHTML = '';
+                details.highlights.forEach(highlight => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon> ${highlight}`; // Added ion-icon
+                    modalHighlights.appendChild(li);
+                });
+
+                modalLink.href = details.link;
+
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    closeModalBtn.addEventListener('click', closeProjectModal);
+    returnBtn.addEventListener('click', closeProjectModal);
+
+    projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+            closeProjectModal();
+        }
+    });
+
+    function closeProjectModal() {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // --- Contact Form Logic (EmailJS) ---
+    const contactForm = document.getElementById('contact-form');
+    const formAlert = document.querySelector('.contact-form .form-alert');
+    const formBtn = document.querySelector('[data-form-btn]');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            formBtn.disabled = true;
+            formBtn.innerHTML = '<ion-icon name="time-outline"></ion-icon> <span>Sending...</span>';
+
+            emailjs.sendForm('service_b9t4tfn', 'template_j0p9m2a', this) // Ensure your service ID and template ID are correct
+                .then(function() {
+                    formAlert.textContent = 'Message sent successfully!';
+                    formAlert.style.color = 'green';
+                    formAlert.style.display = 'block';
+                    contactForm.reset();
+                    formBtn.disabled = false;
+                    formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>';
+                }, function(error) {
+                    console.error('EmailJS failed:', error);
+                    formAlert.textContent = 'Failed to send message. Please try again later.';
+                    formAlert.style.color = 'red';
+                    formAlert.style.display = 'block';
+                    formBtn.disabled = false;
+                    formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>';
+                });
+        });
+    } else {
+        console.error("Contact form not found!");
+    }
+
+    // --- Other existing functionalities (sidebar toggle, filter select box) ---
+    const sidebarToggleButton = document.querySelector('[data-sidebar-btn]');
+    if (sidebarToggleButton && sidebar) {
+        sidebarToggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            sidebarToggleButton.classList.toggle('active');
+        });
+    }
+
+    const filterSelectBox = document.querySelector('[data-select]');
+    const selectValue = document.querySelector('[data-selecct-value]');
+    const selectList = document.querySelector('[data-select-list]');
+    const selectItems = document.querySelectorAll('[data-select-item]');
+
+    if (filterSelectBox && selectValue && selectList && selectItems.length > 0) {
+        filterSelectBox.addEventListener('click', () => {
+            selectList.classList.toggle('active');
+        });
+
+        selectItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const selectedValue = item.textContent;
+                selectValue.textContent = selectedValue;
+                selectList.classList.remove('active');
+
+                // Trigger the equivalent filter button click
+                const matchingFilterBtn = document.querySelector(`.filter-list [data-filter-btn="${selectedValue.toLowerCase()}"]`);
+                if (matchingFilterBtn) {
+                    matchingFilterBtn.click();
+                }
+            });
+        });
+    }
+});
+  </script>
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

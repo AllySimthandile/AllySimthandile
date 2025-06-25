@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Retention – Power BI Dashboards</title>
+  <style>
+    /* Basic Reset & Body Styles (consistent with portfolio) */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: hsl(0, 0%, 7%); /* Smoky black */
+      color: hsl(0, 0%, 98%); /* White-2 */
+      line-height: 1.6;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Header Styles */
+    h1 {
+      font-size: 2.5rem;
+      color: hsl(45, 100%, 72%); /* Orange-yellow-crayola */
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: hsl(240, 64%, 26%); /* Secondary color */
+      border-radius: 2px;
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: hsl(240, 2%, 13%); /* Eerie black 1 */
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 30px;
+      text-align: left;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      color: hsl(0, 0%, 84%); /* Light gray */
+    }
+
+    .project-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      margin: 2rem 0;
+      display: block;
+    }
+
+    /* Tech and Highlights lists */
+    .details-section h2 {
+        font-size: 1.8rem;
+        color: hsl(45, 100%, 72%);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .tech-list, .highlights-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .tech-list li {
+        background: hsl(240, 1%, 17%); /* Onyx */
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: hsl(0, 0%, 98%);
+    }
+
+    .highlights-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        color: hsl(0, 0%, 84%);
+    }
+
+    .highlights-list ion-icon {
+        color: hsl(45, 100%, 72%);
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    /* Button Styles */
+    .back-button-container {
+      margin-top: 2rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 25px;
+      background: hsl(45, 100%, 72%);
+      color: hsl(0, 0%, 7%);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .back-button:hover {
+      background: hsl(45, 54%, 58%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .back-button ion-icon {
+        font-size: 1.2em;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .content-section {
+        padding: 20px;
+      }
+      .back-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+  <h1>Customer Retention – Power BI Dashboards</h1>
+
+  <section class="content-section">
+    <p>
+      This project involved a deep dive into customer data to understand factors contributing to churn
+      and to develop predictive models for early churn detection. The dashboards provide insights into
+      customer segments, loyalty trends, and the impact of various customer engagement strategies.
+    </p>
+
+    <!-- Using the existing image paths from your files -->
+    <img src="./assets/images/Churn.png" alt="Churn Dashboard" class="project-image" />
+    <img src="./assets/images/Customer-Risk-Analysis.png" alt="Customer Risk Analysis Dashboard" class="project-image" />
+
+    <p>
+      The goal was to provide a robust analytical framework for businesses to proactively manage customer
+      relationships and optimize retention strategies, ultimately increasing customer lifetime value (CLV).
+      It demonstrates strong capabilities in data analysis and dashboarding for strategic business outcomes.
+    </p>
+
+    <div class="details-section">
+        <h2>Technologies Used</h2>
+        <ul class="tech-list">
+            <li>Power BI</li>
+            <li>SQL</li>
+            <li>Customer Data Platforms</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <ul class="highlights-list">
+            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Cohort analysis for retention rates</li>
+            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Churn prediction model insights</li>
+            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Customer lifetime value (CLV) analysis</li>
+            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Effectiveness of marketing campaigns on retention</li>
+        </ul>
+    </div>
+
+  </section>
+
+  <div class="back-button-container">
+    <a href="index.html#portfolio" class="back-button">
+      <ion-icon name="arrow-back-outline"></ion-icon> Return to Portfolio
+    </a>
+  </div>
+
+</body>
+</html>
