@@ -1482,6 +1482,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Make sure this API key is correct for your EmailJS service
 emailjs.init("1yHztREs84hRu6tYx"); 
 
+const infoMoreBtn = document.querySelector('[data-sidebar-btn]');
+    const sidebarInfoMore = document.querySelector('.sidebar-info_more');
+    const chevronIcon = infoMoreBtn.querySelector('ion-icon');
+
+    if (infoMoreBtn && sidebarInfoMore) {
+      infoMoreBtn.addEventListener('click', () => {
+        sidebarInfoMore.classList.toggle('active');
+        infoMoreBtn.classList.toggle('active');
+        chevronIcon.name = sidebarInfoMore.classList.contains('active') ? 'chevron-up' : 'chevron-down';
+      });
 // --- Navigation Logic ---
 const pages = document.querySelectorAll('[data-page]');
 const navigationLinks = document.querySelectorAll('[data-nav-link]');
