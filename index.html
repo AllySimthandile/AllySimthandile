@@ -1476,291 +1476,274 @@
   </main>
 
   <script>
-   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS (if not already done in a separate script)
-    emailjs.init("1yHztREs84hRu6tYx"); //
+   // Ensure all DOM manipulation logic runs after the HTML is fully loaded.
+document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Your Navigation Logic ---
-    const pages = document.querySelectorAll('[data-page]');
-    const navigationLinks = document.querySelectorAll('[data-nav-link]');
-    const sidebarBtn = document.querySelector('[data-sidebar-btn]');
-    const sidebar = document.querySelector('[data-sidebar]');
+// --- Initialize EmailJS ---
+// Make sure this API key is correct for your EmailJS service
+emailjs.init("1yHztREs84hRu6tYx"); 
 
-    // Ensure these elements exist before using them
-    if (!pages.length) console.warn("No elements with data-page found!");
-    if (!navigationLinks.length) console.warn("No elements with data-nav-link found!");
+// --- Navigation Logic ---
+const pages = document.querySelectorAll('[data-page]');
+const navigationLinks = document.querySelectorAll('[data-nav-link]');
+const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+const sidebar = document.querySelector('[data-sidebar]');
 
-    const navigateToPage = (pageName) => {
-        pages.forEach(page => {
-            if (page.getAttribute('data-page') === pageName) {
-                page.classList.add('active');
-                window.scrollTo(0, 0);
-            } else {
-                page.classList.remove('active');
-            }
-        });
+// Debugging: Check if elements are found
+if (!sidebarBtn) console.error("Error: sidebarBtn (element with data-sidebar-btn) not found!");
+if (!sidebar) console.error("Error: sidebar (element with data-sidebar) not found!");
 
-        navigationLinks.forEach(link => {
-            // Use textContent for matching, convert to lowercase for consistency
-            if (link.textContent.toLowerCase() === pageName) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-
-        // If you have a sidebar that hides on navigation
-        if (sidebar && sidebarBtn && sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-            sidebarBtn.classList.remove('active');
+// Function to navigate between pages
+const navigateToPage = (pageName) => {
+    pages.forEach(page => {
+        if (page.getAttribute('data-page') === pageName) {
+            page.classList.add('active');
+            window.scrollTo(0, 0); // Scroll to top when changing pages
+        } else {
+            page.classList.remove('active');
         }
-    };
+    });
 
-    // Event listeners for navigation buttons
     navigationLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const pageName = link.textContent.toLowerCase();
-            // Special handling for "Certificates" if its data-page attribute isn't directly matching textContent
-            // Ensure your HTML button text exactly matches the data-page attribute for your article (e.g., "Certificates" -> "certificates")
-            navigateToPage(pageName);
-        });
-    });
-
-    // Initialize with the default active page (e.g., 'about')
-    navigateToPage('about'); //
-
-    // --- Your Portfolio Filtering Functionality (already provided) ---
-    const filterBtns = document.querySelectorAll('[data-filter-btn]');
-    const projectCards = document.querySelectorAll('.project-item'); // Changed from .project-card to .project-item based on your HTML
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter-btn').toLowerCase(); // Make sure this matches category attribute
-
-            projectCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                if (filterValue === 'all' || cardCategory === filterValue) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-
-    // --- Your Project Modal Functionality ---
-    const projectModal = document.getElementById('project-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalImage = document.getElementById('modal-image');
-    const modalSubtitle = document.getElementById('modal-subtitle');
-    const modalDetails = document.getElementById('modal-details');
-    const modalTechList = document.getElementById('modal-tech-list');
-    const modalHighlights = document.getElementById('modal-highlights');
-    const modalLink = document.getElementById('modal-link');
-    const closeModalBtn = document.querySelector('.project-modal .modal-close');
-    const returnBtn = document.querySelector('.project-modal .return-btn');
-
-    // You'll need to define the project details here or fetch them dynamically
-    const projectDetails = {
-        'powerbi-sales': {
-            title: 'Sales Dashboard (Power BI)',
-            subtitle: 'Interactive Sales Performance Analysis',
-            details: 'This dashboard provides real-time insights into sales performance, tracking key metrics like total sales, profit margins, and sales by region or product category. It includes interactive filters and drill-down capabilities for deeper analysis. The goal was to empower sales teams with actionable data.',
-            image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-            tech: ['Power BI', 'DAX', 'SQL Server'],
-            highlights: [
-                'Dynamic KPI tracking',
-                'Sales trend analysis over time',
-                'Geographic sales distribution',
-                'Interactive filtering by product, region, and date'
-            ],
-            link: '#' // Replace with actual link to live dashboard or more details
-        },
-        'diversity': {
-            title: 'Diversity & Inclusion – HR Dashboards',
-            subtitle: 'Analyzing Workplace Diversity and Inclusion Metrics',
-            details: 'Developed a comprehensive set of HR dashboards to visualize diversity metrics (gender, ethnicity, age, etc.) and analyze inclusion initiatives. The dashboards help identify areas for improvement and track the effectiveness of D&I programs within the organization.',
-            image: 'https://images.unsplash.com/photo-1553484771-047a44eee27a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-            tech: ['Power BI', 'HRIS Data', 'Excel'],
-            highlights: [
-                'Demographic breakdown of workforce',
-                'Inclusion survey result visualization',
-                'Recruitment and retention analysis by diversity segment',
-                'Trend analysis of D&I initiatives'
-            ],
-            link: '#'
-        },
-        'retention': {
-            title: 'Customer Retention Analysis',
-            subtitle: 'Identifying Churn Drivers and Optimizing Retention Strategies',
-            details: 'This project involved a deep dive into customer data to understand factors contributing to churn and to develop predictive models for early churn detection. The dashboard provides insights into customer segments, loyalty trends, and the impact of various customer engagement strategies.',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-            tech: ['Power BI', 'SQL', 'Customer Data Platforms'],
-            highlights: [
-                'Cohort analysis for retention rates',
-                'Churn prediction model insights',
-                'Customer lifetime value (CLV) analysis',
-                'Effectiveness of marketing campaigns on retention'
-            ],
-            link: '#'
-        },
-        'tableau-retail': {
-            title: 'Retail Analysis Dashboard (Tableau)',
-            subtitle: 'Optimizing Retail Operations with Data-Driven Insights',
-            details: 'Created an interactive dashboard in Tableau to analyze retail sales, inventory, and customer behavior. It allows drill-downs by store, product, and time period, helping identify best-selling products, slow-moving inventory, and sales performance gaps.',
-            image: 'https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-            tech: ['Tableau', 'SQL', 'Retail POS Data'],
-            highlights: [
-                'Sales performance by region/store',
-                'Inventory turnover rates',
-                'Product profitability analysis',
-                'Customer purchasing patterns'
-            ],
-            link: '#'
-        },
-        'sql-excel': {
-            title: 'Data Querying & Reporting (SQL & Excel)',
-            subtitle: 'Streamlining Data Extraction and Reporting for Business Intelligence',
-            details: 'Developed robust SQL queries for extracting data from various databases (including MS Access), transforming it in Excel using advanced functions (PivotTables, VLOOKUP, macros), and creating automated, comprehensive reports for stakeholders. Focused on efficiency and accuracy.',
-            image: 'https://images.unsplash.com/photo-1623282033815-40b05d96c903?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-            tech: ['SQL', 'MS Excel', 'MS Access'],
-            highlights: [
-                'Complex data extraction with SQL joins and subqueries',
-                'Automated Excel reporting templates',
-                'Data validation and cleansing in Excel',
-                'Dashboard creation for key metrics'
-            ],
-            link: '#'
+        if (link.textContent.toLowerCase() === pageName) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
         }
-    };
+    });
 
-    document.querySelectorAll('[data-modal-trigger]').forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            const projectId = this.getAttribute('data-modal-trigger');
-            const details = projectDetails[projectId];
+    // Hide sidebar if it's active after navigation (important for mobile)
+    if (sidebar && sidebarBtn && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        sidebarBtn.classList.remove('active');
+        // Remove no-scroll from body when sidebar closes
+        document.body.classList.remove('no-scroll'); 
+    }
+};
 
-            if (details) {
-                modalTitle.textContent = details.title;
-                modalImage.src = details.image;
-                modalSubtitle.textContent = details.subtitle;
-                modalDetails.textContent = details.details;
+// Add event listeners to navigation buttons
+navigationLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        const pageName = link.textContent.toLowerCase();
+        navigateToPage(pageName);
+    });
+});
 
-                modalTechList.innerHTML = '';
-                details.tech.forEach(tech => {
-                    const li = document.createElement('li');
-                    li.className = 'tech-item';
-                    li.textContent = tech;
-                    modalTechList.appendChild(li);
-                });
+// Set 'about' page as active by default on load
+navigateToPage('about');
 
-                modalHighlights.innerHTML = '';
-                details.highlights.forEach(highlight => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon> ${highlight}`; // Added ion-icon
-                    modalHighlights.appendChild(li);
-                });
 
-                modalLink.href = details.link;
+// --- Sidebar Toggle Functionality ---
+if (sidebarBtn && sidebar) {
+    sidebarBtn.addEventListener('click', () => {
+        console.log("Sidebar button clicked! Toggling 'active' classes and body scroll."); // Debugging log
+        sidebar.classList.toggle('active');
+        sidebarBtn.classList.toggle('active');
 
-                projectModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+        // Toggle no-scroll class on body to prevent background scrolling when sidebar is open
+        document.body.classList.toggle('no-scroll', sidebar.classList.contains('active'));
+    });
+}
+
+
+// --- Portfolio Filtering Functionality ---
+const filterBtns = document.querySelectorAll('[data-filter-btn]');
+const projectCards = document.querySelectorAll('.project-item'); // Selects the individual project list items
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Remove active class from all filter buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to the clicked button
+        btn.classList.add('active');
+        
+        // Get the filter value (e.g., "python", "power bi", "all")
+        const filterValue = btn.getAttribute('data-filter-btn').toLowerCase();
+        
+        projectCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category'); // Get the category of the project card
+            
+            if (filterValue === 'all' || cardCategory === filterValue) {
+                // Show the card with a slight animation
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300); // Wait for the transition to finish before setting display: none
             }
         });
     });
+});
 
-    closeModalBtn.addEventListener('click', closeProjectModal);
-    returnBtn.addEventListener('click', closeProjectModal);
 
+// --- Portfolio Filter Select Box Functionality (for mobile/dropdown) ---
+const filterSelectBox = document.querySelector('[data-select]');
+const selectValue = document.querySelector('[data-select-value]'); // Corrected typo here
+const selectList = document.querySelector('[data-select-list]');
+const selectItems = document.querySelectorAll('[data-select-item]');
+
+// Debugging: Check if elements are found
+if (!filterSelectBox) console.error("Error: filterSelectBox (element with data-select) not found!");
+if (!selectValue) console.error("Error: selectValue (element with data-select-value) not found!");
+if (!selectList) console.error("Error: selectList (element with data-select-list) not found!");
+if (selectItems.length === 0) console.error("Error: selectItems (elements with data-select-item) not found!");
+
+
+if (filterSelectBox && selectValue && selectList && selectItems.length > 0) {
+    filterSelectBox.addEventListener('click', () => {
+        selectList.classList.toggle('active');
+    });
+
+    selectItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const selectedValue = item.textContent;
+            selectValue.textContent = selectedValue; // Update displayed value
+            selectList.classList.remove('active'); // Close the dropdown
+
+            // Trigger the click event on the corresponding desktop filter button
+            const matchingFilterBtn = document.querySelector(`.filter-list [data-filter-btn="${selectedValue.toLowerCase()}"]`);
+            if (matchingFilterBtn) {
+                matchingFilterBtn.click(); // This will apply the filtering logic
+            }
+        });
+    });
+}
+
+
+// --- Project Detail Modal Functionality (Only for projects still using a modal) ---
+const projectModal = document.getElementById('project-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalImage = document.getElementById('modal-image');
+const modalSubtitle = document.getElementById('modal-subtitle');
+const modalDetails = document.getElementById('modal-details');
+const modalTechList = document.getElementById('modal-tech-list');
+const modalHighlights = document.getElementById('modal-highlights');
+const modalLink = document.getElementById('modal-link');
+const closeModalBtn = document.querySelector('.project-modal .modal-close');
+const returnBtn = document.querySelector('.project-modal .return-btn');
+
+// projectDetails object is now empty as all Power BI, Tableau, SQL & Excel projects
+// link directly to their own HTML pages. Add entries here only for projects that should open a modal.
+const projectDetails = {
+    // Example structure if you were to add a modal-based project again:
+    // 'example-project-id': {
+    //     title: 'Example Project',
+    //     subtitle: 'A brief description',
+    //     details: 'More detailed information about the example project.',
+    //     image: 'path/to/example-image.png',
+    //     tech: ['HTML', 'CSS', 'JavaScript'],
+    //     highlights: ['Interactive UI', 'Responsive Design'],
+    //     link: 'https://example.com/project'
+    // }
+}; 
+
+// Add event listeners to all elements that trigger the project modal
+document.querySelectorAll('[data-modal-trigger]').forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        const projectId = this.getAttribute('data-modal-trigger');
+        const details = projectDetails[projectId]; // Try to get details for the triggered project
+
+        if (details) { // Only proceed if details exist for the triggered project
+            // Populate modal content
+            modalTitle.textContent = details.title;
+            modalImage.src = details.image;
+            modalSubtitle.textContent = details.subtitle;
+            modalDetails.textContent = details.details;
+
+            // Clear previous tech list and populate
+            modalTechList.innerHTML = '';
+            details.tech.forEach(tech => {
+                const li = document.createElement('li');
+                li.className = 'tech-item';
+                li.textContent = tech;
+                modalTechList.appendChild(li);
+            });
+
+            // Clear previous highlights and populate
+            modalHighlights.innerHTML = '';
+            details.highlights.forEach(highlight => {
+                const li = document.createElement('li');
+                li.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon> ${highlight}`; // Include ion-icon
+                modalHighlights.appendChild(li);
+            });
+
+            modalLink.href = details.link; // Set the project link
+
+            // Show the modal and prevent body scrolling
+            projectModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            console.warn(`No modal details found for project ID: ${projectId}. This project might link to a separate HTML page.`);
+        }
+    });
+});
+
+// Close modal functions
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeProjectModal);
+if (returnBtn) returnBtn.addEventListener('click', closeProjectModal);
+
+// Close modal when clicking outside the content
+if (projectModal) {
     projectModal.addEventListener('click', (e) => {
         if (e.target === projectModal) {
             closeProjectModal();
         }
     });
+}
 
-    function closeProjectModal() {
-        projectModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
 
-    // --- Contact Form Logic (EmailJS) ---
-    const contactForm = document.getElementById('contact-form');
-    const formAlert = document.querySelector('.contact-form .form-alert');
-    const formBtn = document.querySelector('[data-form-btn]');
+// Helper function to close the project modal
+function closeProjectModal() {
+    if (projectModal) projectModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore body scrolling
+}
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
 
-            formBtn.disabled = true;
-            formBtn.innerHTML = '<ion-icon name="time-outline"></ion-icon> <span>Sending...</span>';
+// --- Contact Form Logic (EmailJS) ---
+const contactForm = document.getElementById('contact-form');
+const formAlert = document.querySelector('.contact-form .form-alert');
+const formBtn = document.querySelector('[data-form-btn]');
 
-            emailjs.sendForm('service_b9t4tfn', 'template_j0p9m2a', this) // Ensure your service ID and template ID are correct
-                .then(function() {
-                    formAlert.textContent = 'Message sent successfully!';
-                    formAlert.style.color = 'green';
-                    formAlert.style.display = 'block';
-                    contactForm.reset();
-                    formBtn.disabled = false;
-                    formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>';
-                }, function(error) {
-                    console.error('EmailJS failed:', error);
-                    formAlert.textContent = 'Failed to send message. Please try again later.';
-                    formAlert.style.color = 'red';
-                    formAlert.style.display = 'block';
-                    formBtn.disabled = false;
-                    formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>';
-                });
-        });
-    } else {
-        console.error("Contact form not found!");
-    }
+if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-    // --- Other existing functionalities (sidebar toggle, filter select box) ---
-    const sidebarToggleButton = document.querySelector('[data-sidebar-btn]');
-    if (sidebarToggleButton && sidebar) {
-        sidebarToggleButton.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            sidebarToggleButton.classList.toggle('active');
-        });
-    }
+        formBtn.disabled = true; // Disable button to prevent multiple submissions
+        formBtn.innerHTML = '<ion-icon name="time-outline"></ion-icon> <span>Sending...</span>'; // Show sending state
 
-    const filterSelectBox = document.querySelector('[data-select]');
-    const selectValue = document.querySelector('[data-selecct-value]');
-    const selectList = document.querySelector('[data-select-list]');
-    const selectItems = document.querySelectorAll('[data-select-item]');
-
-    if (filterSelectBox && selectValue && selectList && selectItems.length > 0) {
-        filterSelectBox.addEventListener('click', () => {
-            selectList.classList.toggle('active');
-        });
-
-        selectItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const selectedValue = item.textContent;
-                selectValue.textContent = selectedValue;
-                selectList.classList.remove('active');
-
-                // Trigger the equivalent filter button click
-                const matchingFilterBtn = document.querySelector(`.filter-list [data-filter-btn="${selectedValue.toLowerCase()}"]`);
-                if (matchingFilterBtn) {
-                    matchingFilterBtn.click();
-                }
+        // Send email using EmailJS
+        emailjs.sendForm('service_b9t4tfn', 'template_j0p9m2a', this) // Replace with your Service ID and Template ID
+            .then(function() {
+                // On success
+                formAlert.textContent = 'Message sent successfully!';
+                formAlert.style.color = 'green';
+                formAlert.style.display = 'block';
+                contactForm.reset(); // Clear the form
+                formBtn.disabled = false; // Re-enable button
+                formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>'; // Reset button text
+            }, function(error) {
+                // On error
+                console.error('EmailJS failed:', error);
+                formAlert.textContent = 'Failed to send message. Please try again later.';
+                formAlert.style.color = 'red';
+                formAlert.style.display = 'block';
+                formBtn.disabled = false; // Re-enable button
+                formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>'; // Reset button text
             });
-        });
-    }
-});
+    });
+} else {
+    console.error("Contact form not found! Ensure its ID is 'contact-form'.");
+}
+
+}); // End of DOMContentLoaded
+
   </script>
   <!--
     - custom js link
