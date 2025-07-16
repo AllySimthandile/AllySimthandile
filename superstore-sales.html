@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Superstore Sales Overview – Power BI Dashboard</title>
+  <style>
+    /* Basic Reset & Body Styles */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: hsl(0, 0%, 7%); /* Smoky black from your portfolio */
+      color: hsl(0, 0%, 98%); /* White-2 from your portfolio */
+      line-height: 1.6;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh; /* Ensure it takes full viewport height */
+      box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+
+    /* Header Styles */
+    h1 {
+      font-size: 2.5rem;
+      color: hsl(45, 100%, 72%); /* Orange-yellow-crayola */
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: hsl(240, 64%, 26%); /* Secondary color from your portfolio */
+      border-radius: 2px;
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1000px; /* Wider content area */
+      margin: 2rem auto;
+      background: hsl(240, 2%, 13%); /* Eerie black 1 */
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 30px;
+      text-align: left; /* Align text left within the section */
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      color: hsl(0, 0%, 84%); /* Light gray */
+    }
+
+    .dashboard-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      margin: 2rem 0; /* Space above and below image */
+      display: block; /* Ensure no extra space below image */
+    }
+
+    /* Button Styles */
+    .back-button-container {
+      margin-top: 2rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-flex; /* Use inline-flex for icon and text alignment */
+      align-items: center;
+      gap: 8px;
+      padding: 12px 25px;
+      background: hsl(45, 100%, 72%); /* Orange-yellow-crayola */
+      color: hsl(0, 0%, 7%); /* Smoky black */
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .back-button:hover {
+      background: hsl(45, 54%, 58%); /* Vegas gold */
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Ionicon styling */
+    .back-button ion-icon {
+        font-size: 1.2em; /* Adjust icon size relative to text */
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .content-section {
+        padding: 20px;
+      }
+      .back-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+  <!-- Ionicon script for icons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+  <h1>Superstore Sales Overview</h1>
+
+  <section class="content-section">
+    <p>
+      This interactive Power BI dashboard provides a detailed analysis of superstore sales performance.
+      It enables comprehensive tracking of key metrics such as total sales, profit, quantity sold,
+      and profit margin across different dimensions.
+    </p>
+
+    <img src="./assets/images/superstore-sales-overview.png" alt="Superstore Sales Overview Dashboard" class="dashboard-image" />
+
+    <p>
+      The dashboard features intuitive visualizations for understanding sales trends over time,
+      performance by product category and customer segment, and geographical distribution of sales.
+      Key insights can be quickly extracted to identify top-performing areas and products,
+      as well as areas needing improvement, enabling data-driven strategic decisions for the business.
+    </p>
+    <p>
+      This project demonstrates strong skills in data modeling, DAX formula creation, and dashboard design
+      within the Power BI environment, ensuring a user-friendly and actionable analytical tool.
+    </p>
+
+  </section>
+
+  <div class="back-button-container">
+    <!-- Links back to the portfolio page, specifically the portfolio section -->
+    <a href="index.html#portfolio" class="back-button">
+      <ion-icon name="arrow-back-outline"></ion-icon> Return to Portfolio
+    </a>
+  </div>
+
+</body>
+</html>
